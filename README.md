@@ -1,5 +1,5 @@
 # Database storage for [OAuth 2.0](https://github.com/go-oauth2/oauth2)
-# Implement Inherited from [MySQL storage for OAuth 2.0](https://github.com/go-oauth2/mysql)
+Inherited from [MySQL storage for OAuth 2.0](https://github.com/go-oauth2/mysql)
 
 [![License][license-image]][license-url]
 
