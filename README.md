@@ -6,7 +6,7 @@
 ## Install
 
 ``` bash
-$ go get -v github.com/iodeal/go-oauth2-db-store/v4
+$ go get -v github.com/iodeal/go-oauth2-database-store/v4
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ package main
 import (
 	"github.com/go-oauth2/oauth2/v4/manage"
 	"github.com/go-oauth2/oauth2/v4/models"
-	dbstore "github.com/iodeal/go-oauth2-db-store/v4"
+	dbstore "github.com/iodeal/go-oauth2-database-store/v4"
 )
 
 func main() {
