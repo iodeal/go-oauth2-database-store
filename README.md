@@ -15,23 +15,45 @@ $ go get -v github.com/iodeal/go-oauth2-database-store/v4
 package main
 
 import (
-	"github.com/go-oauth2/oauth2/v4/manage"
-	"github.com/go-oauth2/oauth2/v4/models"
+	"context"
+	"fmt"
+	"time"
+
 	dbstore "github.com/iodeal/go-oauth2-database-store/v4"
+
+	"github.com/go-oauth2/oauth2/v4/models"
+
+	"github.com/go-oauth2/oauth2/v4/manage"
+
+	_ "github.com/lib/pq"
 )
 
 func main() {
 	manager := manage.NewDefaultManager()
 
 	// use mysql token store
-	store := mysql.NewDefaultStore(
-		mysql.NewConfig("postgres","host=localhost port=5432 user=postgres password=123456 dbname=postgres sslmode=disable"),
+	store := dbstore.NewDefaultStore(
+		dbstore.NewConfig("postgres", "host=localhost port=5432 user=postgres password=123456 dbname=postgres sslmode=disable"),
 	)
 
 	defer store.Close()
 
 	manager.MapTokenStorage(store)
-	// ...
+	info := &models.Token{
+		ClientID:      "123",
+		UserID:        "adb",
+		RedirectURI:   "http://localhost/",
+		Scope:         "all",
+		Code:          "12_34_56",
+		CodeCreateAt:  time.Now(),
+		CodeExpiresIn: time.Second * 5,
+	}
+	err := store.Create(context.TODO(), info)
+	if err != nil {
+		log.Fatal("create store err:", err)
+	} else {
+		fmt.Println("create ok!")
+	}
 }
 
 ```
