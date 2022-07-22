@@ -48,7 +48,7 @@ func (s *Store) clean() {
 		s.errorf(err.Error())
 		return
 	}
-	err = s.db.QueryRowx(rSQL, rQueryParas...).StructScan(&n)
+	err = s.db.QueryRowx(rSQL, rQueryParas...).Scan(&n)
 	if err != nil || n == 0 {
 		if err != nil {
 			s.errorf(err.Error())
